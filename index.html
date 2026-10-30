@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Rounds">
+<meta name="theme-color" content="#000000">
+<title>Rounds Timer</title>
+<style>
+  @font-face{font-family:'Bebas Neue';font-style:normal;font-weight:400;font-display:block;src:url(data:font/woff2;base64,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) format('woff2')}
+  :root{
+    --bg:#000000; --bg2:#000000; --row:#202020; --line:#202020;
+    --text:#fff; --muted:#8a8a8a; --dim:#5a5a5a;
+    --accent:#fff;
+    --sat:env(safe-area-inset-top); --sab:env(safe-area-inset-bottom);
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}
+  html,body{height:100%;margin:0;background:var(--bg);color:var(--text);overflow:hidden;
+    font-family:"Bebas Neue","Avenir Next Condensed","Arial Narrow",sans-serif;
+    font-weight:400;text-transform:uppercase;letter-spacing:.03em}
+  button{font:inherit;color:inherit;background:none;border:0;padding:0;text-transform:inherit;cursor:pointer}
+  .screen{position:fixed;inset:0;display:none;flex-direction:column}
+  .screen.on{display:flex}
+
+  /* ===== TIMER SCREEN ===== */
+  #timer .top{position:absolute;left:0;right:0;top:0;z-index:2;padding:calc(var(--sat) + 14px) 20px 0;display:flex;align-items:center;justify-content:space-between;color:#fff}
+  .rounds{position:absolute;left:0;right:0;bottom:calc(50% + min(19.5vw,17.8vh) + 12px);text-align:center;font-size:36px;line-height:1.15;color:var(--muted);font-variant-numeric:tabular-nums;padding:0 20px;white-space:nowrap}
+  .gearbtn{width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:#fff}
+  .gearbtn svg{width:30px;height:30px}
+  #stage{flex:1;position:relative;background:#000;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:background .25s}
+  #stage .big{font-size:min(46vw,42vh);line-height:1;font-weight:400;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+  #stage .label{position:absolute;left:0;right:0;top:calc(50% + min(16.5vw,15vh) + 12px);text-align:center;font-size:36px;line-height:1;color:var(--muted)}
+  #timer .bottom{position:absolute;left:0;right:0;bottom:0;padding:0 20px calc(var(--sab) + 30px);display:flex;align-items:center;justify-content:space-between}
+  .ctl{width:130px;height:130px;border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative;flex-shrink:0}
+  .ctl::after{content:"";position:absolute;inset:8px;border:4px solid #000000;border-radius:50%}
+  .ctl svg{position:relative;width:60px;height:60px}
+  .ctl{background:#fff} #startbtn svg{color:#000}
+  #resetBtn svg{color:#000}
+
+  /* ===== SETTINGS SCREEN ===== */
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:calc(var(--sat) + 12px) 20px 14px;font-size:24px;background:var(--bg);flex-shrink:0}
+  .nav .cancel{color:#fff;width:44px;height:44px;display:flex;align-items:center;justify-content:center;margin-left:-12px} .nav .cancel svg{width:30px;height:30px} .nav .spacer{width:44px;height:44px;margin-right:-12px} .nav .title{color:#fff;font-size:36px;line-height:1}
+  .namehead{padding:16px 20px}
+  .namehead input{display:block;width:100%;background:transparent;border:0;color:#fff;font:inherit;font-size:46px;text-align:center;text-transform:uppercase;outline:none;padding:6px 0;border-bottom:1px dashed var(--dim)}
+  .namehead input::placeholder{color:var(--dim)}
+  .scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:calc(var(--sab) + 120px)}
+  .sechead{background:transparent;color:#fff;text-align:center;font-size:46px;line-height:1;padding:22px 20px;position:relative}
+  .row{display:flex;align-items:center;width:100%;text-align:left;padding:16px 10px 16px 20px;border-bottom:1px solid var(--line);min-height:88px}
+  .row .dot{display:none}
+  .row .txt{flex:1}
+  .row .txt .t{font-size:46px;line-height:1}
+  .row .val{font-size:46px;font-variant-numeric:tabular-nums;line-height:1;margin-right:12px}
+  .row .chev{color:var(--muted);display:flex;margin-right:6px} .row .chev svg{width:28px;height:28px}
+  .actions{display:flex;gap:14px;margin:30px 20px 20px}
+  .addbtn{flex:1;display:flex;align-items:center;justify-content:center;background:#202020;border-radius:999px;padding:16px;font-size:28px}
+  .addbtn.on{background:#fff;color:#000}
+  .wk{display:block;padding:18px 20px;border-bottom:1px solid var(--line)}
+  .wk .head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+  .wk .name{color:#fff;font-size:46px;line-height:1;flex:1}
+  .wk .grid{display:grid;grid-template-columns:1fr auto;gap:6px 20px;font-size:46px;line-height:1;font-variant-numeric:tabular-nums;color:var(--muted)}
+  .wk .grid span:nth-child(even){text-align:right}
+  .wk .check{width:52px;height:52px;border-radius:50%;background:#202020;display:flex;align-items:center;justify-content:center;color:#888;flex-shrink:0}
+  .wk.sel .check{background:#fff;color:#000}
+  .wk .check svg{width:26px;height:26px}
+  .wk .del{display:none;width:52px;height:52px;border-radius:50%;background:#fff;color:#000;align-items:center;justify-content:center;flex-shrink:0} .wk .del svg{width:26px;height:26px}
+  .deleting .wk .del{display:flex}.deleting .wk .check{display:none}
+  .empty{color:var(--dim);text-align:center;padding:40px 20px;font-size:20px}
+
+  /* ===== PICKER SHEET ===== */
+  #picker{position:fixed;inset:0;background:var(--bg);display:none;flex-direction:column;z-index:10}
+  #picker.on{display:flex}
+  .pick{flex:1;display:flex;align-items:center;justify-content:center;gap:16px}
+  .wheelwrap{position:relative;height:450px;width:150px}
+  .wheelwrap::before{content:"";position:absolute;left:0;right:0;top:50%;height:110px;transform:translateY(-50%);background:#202020;border-radius:999px;pointer-events:none}
+  .wheel{position:absolute;inset:0;overflow-y:scroll;-webkit-mask-image:linear-gradient(transparent,#000 25%,#000 75%,transparent);mask-image:linear-gradient(transparent,#000 25%,#000 75%,transparent);scroll-snap-type:y mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:170px 0}
+  .wheel::-webkit-scrollbar{display:none}
+  .wheel div{height:110px;line-height:110px;text-align:center;font-size:96px;color:#fff;scroll-snap-align:center;font-variant-numeric:tabular-nums;opacity:.18;transform:scale(.72);transition:opacity .12s,transform .12s}
+  .wheel div.near{opacity:.4;transform:scale(.85)}
+  .wheel div.sel{opacity:1;transform:none}
+  .pick .unit{font-size:46px;color:var(--muted);margin-right:28px;align-self:center}
+  .swatches{display:none!important}
+  .swatches div{flex:1;display:flex;align-items:center;justify-content:center;color:#000}
+  .swatches svg{width:40px;height:40px;display:none}
+  .swatches div.on svg{display:block}
+  .hide{display:none!important}
+</style>
+</head>
+<body>
+
+<!-- ================= TIMER ================= -->
+<div id="timer" class="screen on">
+  <div class="top">
+    <div></div>
+    <button class="gearbtn" id="gearBtn" aria-label="Settings"><svg viewBox="0 0 256 256" fill="currentColor"><path d="M128,76a52,52,0,1,0,52,52A52.06,52.06,0,0,0,128,76Zm0,80a28,28,0,1,1,28-28A28,28,0,0,1,128,156Zm113.86-49.57A12,12,0,0,0,236,98.34L208.21,82.49l-.11-31.31a12,12,0,0,0-4.25-9.12,116,116,0,0,0-38-21.41,12,12,0,0,0-9.68.89L128,37.27,99.83,21.53a12,12,0,0,0-9.7-.9,116.06,116.06,0,0,0-38,21.47,12,12,0,0,0-4.24,9.1l-.14,31.34L20,98.35a12,12,0,0,0-5.85,8.11,110.7,110.7,0,0,0,0,43.11A12,12,0,0,0,20,157.66l27.82,15.85.11,31.31a12,12,0,0,0,4.25,9.12,116,116,0,0,0,38,21.41,12,12,0,0,0,9.68-.89L128,218.73l28.14,15.74a12,12,0,0,0,9.7.9,116.06,116.06,0,0,0,38-21.47,12,12,0,0,0,4.24-9.1l.14-31.34,27.81-15.81a12,12,0,0,0,5.85-8.11A110.7,110.7,0,0,0,241.86,106.43Zm-22.63,33.18-26.88,15.28a11.94,11.94,0,0,0-4.55,4.59c-.54,1-1.11,1.93-1.7,2.88a12,12,0,0,0-1.83,6.31L184.13,199a91.83,91.83,0,0,1-21.07,11.87l-27.15-15.19a12,12,0,0,0-5.86-1.53h-.29c-1.14,0-2.3,0-3.44,0a12.08,12.08,0,0,0-6.14,1.51L93,210.82A92.27,92.27,0,0,1,71.88,199l-.11-30.24a12,12,0,0,0-1.83-6.32c-.58-.94-1.16-1.91-1.7-2.88A11.92,11.92,0,0,0,63.7,155L36.8,139.63a86.53,86.53,0,0,1,0-23.24l26.88-15.28a12,12,0,0,0,4.55-4.58c.54-1,1.11-1.94,1.7-2.89a12,12,0,0,0,1.83-6.31L71.87,57A91.83,91.83,0,0,1,92.94,45.17l27.15,15.19a11.92,11.92,0,0,0,6.15,1.52c1.14,0,2.3,0,3.44,0a12.08,12.08,0,0,0,6.14-1.51L163,45.18A92.27,92.27,0,0,1,184.12,57l.11,30.24a12,12,0,0,0,1.83,6.32c.58.94,1.16,1.91,1.7,2.88A11.92,11.92,0,0,0,192.3,101l26.9,15.33A86.53,86.53,0,0,1,219.23,139.61Z"/></svg></button>
+  </div>
+  <div id="stage">
+    <div class="rounds"><div id="hName">Rounds</div><div><span id="roundsLeft">0</span> Rounds left</div></div>
+    <div class="big" id="big">00:00</div>
+    <div class="label" id="phaseName">WORK</div>
+  </div>
+  <div class="bottom">
+    <button class="ctl" id="resetBtn" aria-label="Reset"><svg viewBox="0 0 256 256" fill="currentColor"><path d="M228,128a100,100,0,0,1-98.66,100H128a99.39,99.39,0,0,1-68.62-27.29,12,12,0,0,1,16.48-17.45,76,76,0,1,0-1.57-109c-.13.13-.25.25-.39.37L54.89,92H72a12,12,0,0,1,0,24H24a12,12,0,0,1-12-12V56a12,12,0,0,1,24,0V76.72L57.48,57.06A100,100,0,0,1,228,128Z"/></svg></button>
+    <button class="ctl" id="startbtn" aria-label="Start"><svg viewBox="0 0 256 256" fill="currentColor" id="playIco"><path d="M234.49,111.07,90.41,22.94A20,20,0,0,0,60,39.87V216.13a20,20,0,0,0,30.41,16.93l144.08-88.13a19.82,19.82,0,0,0,0-33.86ZM84,208.85V47.15L216.16,128Z"/></svg><svg viewBox="0 0 256 256" fill="currentColor" id="pauseIco" class="hide"><path d="M200,28H160a20,20,0,0,0-20,20V208a20,20,0,0,0,20,20h40a20,20,0,0,0,20-20V48A20,20,0,0,0,200,28Zm-4,176H164V52h32ZM96,28H56A20,20,0,0,0,36,48V208a20,20,0,0,0,20,20H96a20,20,0,0,0,20-20V48A20,20,0,0,0,96,28ZM92,204H60V52H92Z"/></svg></button>
+  </div>
+</div>
+
+<!-- ================= SETTINGS ================= -->
+<div id="settings" class="screen">
+  <div class="nav">
+    <button class="cancel" id="cancelBtn" aria-label="Back"><svg viewBox="0 0 256 256" fill="currentColor"><path d="M168.49,199.51a12,12,0,0,1-17,17l-80-80a12,12,0,0,1,0-17l80-80a12,12,0,0,1,17,17L97,128Z"/></svg></button>
+    <div class="title"></div>
+    <div class="spacer"></div>
+  </div>
+  <div class="scroll" id="scroll">
+    <div class="sechead namehead"><input id="nameInput" placeholder="Timer name" maxlength="22"></div>
+    <div id="rows" style="margin-bottom:30px"></div>
+    <div class="sechead">Timers</div>
+    <div id="wkList"></div>
+    <div class="actions">
+      <button class="addbtn" id="editBtn">Edit Timers</button>
+      <button class="addbtn" id="addBtn">Add New Timer</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= PICKER ================= -->
+<div id="picker">
+  <div class="nav">
+    <button class="cancel" id="pBack" aria-label="Back"><svg viewBox="0 0 256 256" fill="currentColor"><path d="M168.49,199.51a12,12,0,0,1-17,17l-80-80a12,12,0,0,1,0-17l80-80a12,12,0,0,1,17,17L97,128Z"/></svg></button>
+    <div class="title" id="pTitle">Work</div>
+    <div class="spacer"></div>
+  </div>
+  <div class="pick" id="pickTime">
+    <div class="wheelwrap"><div class="wheel" id="selMin"></div></div><div class="unit">Min</div>
+    <div class="wheelwrap"><div class="wheel" id="selSec"></div></div><div class="unit">Sec</div>
+  </div>
+  <div class="pick hide" id="pickRounds">
+    <div class="wheelwrap"><div class="wheel" id="selRounds"></div></div><div class="unit">Rounds</div>
+  </div>
+  <div class="swatches" id="swatches"></div>
+</div>
+
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const COLORS = {};
+  const FIELDS = [
+    {key:'work',    title:'Work',    type:'time'},
+    {key:'rest',    title:'Rest',    type:'time'},
+    {key:'rounds',  title:'Rounds',  type:'rounds'},
+  ];
+  const DEFAULTS = [
+    {id:'d1', name:'Bag Training', work:120, rest:50, rounds:20, colors:{work:'green',rest:'red'}},
+    {id:'d2', name:'Strength Training', work:17, rest:0, rounds:40, colors:{work:'green',rest:'red'}},
+    {id:'d3', name:'Sparring', work:120, rest:10, rounds:20, colors:{work:'green',rest:'red'}},
+    {id:'d4', name:'Drills', work:30, rest:0, rounds:20, colors:{work:'green',rest:'red'}},
+  ];
+
+  /* ---------- storage ---------- */
+  let store = load();
+  function load(){
+    try{ const s = JSON.parse(localStorage.getItem('roundsTimer.v4')); if(s && s.workouts && s.workouts.length) return s; }catch(e){}
+    return {workouts:JSON.parse(JSON.stringify(DEFAULTS)), currentId:'d1'};
+  }
+  function persist(){ try{ localStorage.setItem('roundsTimer.v4', JSON.stringify(store)); }catch(e){} }
+  const current = () => store.workouts.find(w=>w.id===store.currentId) || store.workouts[0];
+
+  /* ---------- helpers ---------- */
+  const pad = n => String(n).padStart(2,'0');
+  const mmss = s => { s=Math.max(0,Math.ceil(s)); return pad(Math.floor(s/60))+':'+pad(s%60); };
+  const short = s => s>=60 ? (Math.floor(s/60)+':'+pad(s%60)) : (':'+pad(s));
+  const totalLen = w => w.rounds*w.work + Math.max(0,w.rounds-1)*w.rest;
+
+  /* ---------- audio: Web Audio for precise timing + silent <audio> loop to keep iOS in "playback" mode ---------- */
+  let ctx=null;
+  function unlockAudio(){
+    if(!ctx){ try{ ctx=new (window.AudioContext||window.webkitAudioContext)(); }catch(e){} }
+    if(ctx && ctx.state==='suspended') ctx.resume();
+  }
+  function tone(t, freq, dur, vol, type='sine', detune=0){
+    const o=ctx.createOscillator(), g=ctx.createGain();
+    o.type=type; o.frequency.value=freq; o.detune.value=detune; o.connect(g); g.connect(ctx.destination);
+    g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(vol,t+.003); g.gain.exponentialRampToValueAtTime(.0005,t+dur);
+    o.start(t); o.stop(t+dur+.05);
+  }
+  function noise(t, dur, vol, freq, q){ // short filtered noise burst = the "strike"
+    const n=Math.ceil(ctx.sampleRate*dur), b=ctx.createBuffer(1,n,ctx.sampleRate), d=b.getChannelData(0);
+    for(let i=0;i<n;i++) d[i]=(Math.random()*2-1);
+    const src=ctx.createBufferSource(), f=ctx.createBiquadFilter(), g=ctx.createGain();
+    src.buffer=b; f.type='bandpass'; f.frequency.value=freq; f.Q.value=q;
+    src.connect(f); f.connect(g); g.connect(ctx.destination);
+    g.gain.setValueAtTime(vol,t); g.gain.exponentialRampToValueAtTime(.0005,t+dur);
+    src.start(t); src.stop(t+dur+.02);
+  }
+  // Woodblock: dry, short "tok" — a quickly decaying tone plus a click
+  function woodblock(t){
+    if(!ctx) return;
+    // deeper fundamental, fast pitch drop for the "knock", bright transient click for sharpness
+    const o=ctx.createOscillator(), g=ctx.createGain();
+    o.type='square'; o.frequency.setValueAtTime(1150,t); o.frequency.exponentialRampToValueAtTime(820,t+.015);
+    o.connect(g); g.connect(ctx.destination);
+    g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(.55,t+.0015); g.gain.exponentialRampToValueAtTime(.0005,t+.06);
+    o.start(t); o.stop(t+.1);
+    tone(t,2300,.035,.3,'sine'); noise(t,.03,1,2400,3); noise(t,.01,.7,6000,.7);
+  }
+  // Boxing bell: inharmonic metallic partials with a long ring
+  function bellStrike(t, vol=1){
+    if(!ctx) return;
+    // higher, brighter ring: upper partials carry more weight and sustain longer
+    const f0=740, partials=[[1,.9,3.0],[2.0,.7,2.6],[2.76,.6,2.3],[3.52,.45,2.0],[4.07,.35,1.7],[5.4,.25,1.3],[6.8,.15,1.0]];
+    for(const [r,a,d] of partials){ tone(t,f0*r,d,.3*a*vol,'sine',5); tone(t,f0*r,d*.9,.22*a*vol,'sine',-5); }
+    noise(t,.05,.9*vol,5000,.6);
+  }
+  const tick       = t => woodblock(t);
+  const bell       = t => bellStrike(t);
+  const finishBell = t => { bellStrike(t); bellStrike(t+.55); bellStrike(t+1.1,1.1); };
+  const now = () => ctx ? ctx.currentTime : 0;
+
+  // Silent loop: a playing <audio> element switches the iOS audio session to media playback,
+  // which (on most iOS versions) lets Web Audio sound through the ring/silent switch.
+  let silent=null;
+  function silentLoop(on){
+    try{
+      if(!silent){
+        const SR=8000, len=SR, buf=new ArrayBuffer(44+len*2), v=new DataView(buf);
+        const str=(o,t)=>{for(let i=0;i<t.length;i++)v.setUint8(o+i,t.charCodeAt(i));};
+        str(0,'RIFF'); v.setUint32(4,36+len*2,true); str(8,'WAVE'); str(12,'fmt '); v.setUint32(16,16,true);
+        v.setUint16(20,1,true); v.setUint16(22,1,true); v.setUint32(24,SR,true); v.setUint32(28,SR*2,true);
+        v.setUint16(32,2,true); v.setUint16(34,16,true); str(36,'data'); v.setUint32(40,len*2,true);
+        silent=new Audio(URL.createObjectURL(new Blob([buf],{type:'audio/wav'}))); silent.loop=true; silent.volume=.01; silent.setAttribute('playsinline','');
+      }
+      if(on){ const p=silent.play(); if(p&&p.catch) p.catch(()=>{}); } else { silent.pause(); }
+    }catch(e){}
+  }
+
+  /* ---------- wake lock ---------- */
+  let wakeLock=null;
+  async function keepAwake(on){
+    try{
+      if(on && 'wakeLock' in navigator && !wakeLock){ wakeLock = await navigator.wakeLock.request('screen'); wakeLock.addEventListener('release',()=>{wakeLock=null;}); }
+      else if(!on && wakeLock){ await wakeLock.release(); wakeLock=null; }
+    }catch(e){}
+  }
+  document.addEventListener('visibilitychange',()=>{ if(document.visibilityState==='visible' && T.running) keepAwake(true); });
+
+  /* ---------- timer engine ---------- */
+  const T = {phases:[], idx:0, running:false, endAt:0, remaining:0, raf:null, lastWhole:null};
+  function buildPhases(w){
+    const p=[];
+    for(let r=1;r<=w.rounds;r++){
+      p.push({name:'Work', len:w.work, color:w.colors.work, round:r});
+      if(w.rest>0 && r<w.rounds) p.push({name:'Rest', len:w.rest, color:w.colors.rest, round:r});
+    }
+    return p;
+  }
+  function resetTimer(){
+    T.running=false; cancelAnimationFrame(T.raf); keepAwake(false); silentLoop(false);
+    T.phases=buildPhases(current()); T.idx=0; T.remaining=T.phases.length?T.phases[0].len:0; T.lastWhole=null; T.lastCue=null;
+    render(true);
+  }
+  function start(){
+    if(!T.phases.length) return;
+    if(T.idx>=T.phases.length){ T.idx=0; T.remaining=T.phases[0].len; }
+    unlockAudio(); keepAwake(true); silentLoop(true);
+    T.running=true; T.endAt=performance.now()+T.remaining*1000; T.lastCue=Math.ceil(T.remaining-LEAD);
+    loop(); render(true);
+  }
+  function pause(){ T.running=false; cancelAnimationFrame(T.raf); T.remaining=Math.max(0,(T.endAt-performance.now())/1000); keepAwake(false); silentLoop(false); render(true); }
+  const LEAD=0.25; // seconds of look-ahead: sounds are scheduled on the audio clock so they land exactly on the second
+  function loop(){
+    if(!T.running) return;
+    T.remaining=(T.endAt-performance.now())/1000;
+    if(T.remaining<=0){ nextPhase(true); return; }
+    const cue=Math.ceil(T.remaining-LEAD);
+    if(cue!==T.lastCue){
+      T.lastCue=cue; const len=T.phases[T.idx].len;
+      const at=now()+Math.max(0,T.remaining-cue); // exact moment the display will read "cue"
+      if(cue===0){ if(T.idx+1<T.phases.length) bell(at); else finishBell(at); }
+      else if(cue<=3 && len>3) tick(at);
+    }
+    const whole=Math.ceil(T.remaining);
+    if(whole!==T.lastWhole){ T.lastWhole=whole; render(); }
+    T.raf=requestAnimationFrame(loop);
+  }
+  function nextPhase(auto){
+    if(!auto){ if(T.idx+1<T.phases.length) bell(now()); else finishBell(now()); }
+    T.idx++;
+    if(T.idx>=T.phases.length){ T.running=false; T.remaining=0; keepAwake(false); setTimeout(()=>silentLoop(false),2500); render(true); return; }
+    T.remaining=T.phases[T.idx].len; T.lastWhole=null; T.lastCue=null;
+    if(T.running){ T.endAt=performance.now()+T.remaining*1000; T.raf=requestAnimationFrame(loop); }
+    render(true);
+  }
+  function render(full){
+    const w=current(), ph=T.phases[T.idx], done=T.idx>=T.phases.length;
+    $('big').textContent = mmss(T.remaining);
+    if(full){
+      const stage=$('stage');
+      $('hName').textContent = w.name || 'Rounds';
+      if(done){ $('phaseName').textContent='Finished'; $('big').textContent='00:00'; }
+      else { $('phaseName').textContent=ph.name; }
+      $('playIco').classList.toggle('hide',T.running); $('pauseIco').classList.toggle('hide',!T.running);
+    }
+    // rounds left (work phases remaining incl. current)
+    let left=0; for(let i=T.idx;i<T.phases.length;i++) if(T.phases[i].name==='Work') left++;
+    $('roundsLeft').textContent=left;
+  }
+  $('startbtn').onclick=()=> T.running?pause():start();
+  $('stage').onclick=()=>{ if(T.running) pause(); else if(T.idx<T.phases.length) start(); };
+  $('resetBtn').onclick=resetTimer;
+
+  /* ---------- settings screen ---------- */
+  let draft=null, deleting=false;
+  function openSettings(){
+    if(T.running) pause();
+    draft=JSON.parse(JSON.stringify(current())); dirty=false;
+    deleting=false; $('editBtn').classList.remove('on'); $('editBtn').textContent='Edit Timers'; $('wkList').classList.remove('deleting');
+    renderSettings();
+    $('timer').classList.remove('on'); $('settings').classList.add('on');
+  }
+  function closeSettings(){ $('settings').classList.remove('on'); $('timer').classList.add('on'); resetTimer(); }
+  function renderSettings(){
+    $('nameInput').value=draft.name;
+    $('rows').innerHTML=FIELDS.map(f=>{
+      const val = f.type==='rounds' ? draft.rounds : short(draft[f.key]);
+      return `<button class="row" data-key="${f.key}"><span class="txt"><div class="t">${f.title}</div></span><span class="val">${val}</span><span class="chev"><svg viewBox="0 0 256 256" fill="currentColor"><path d="M184.49,136.49l-80,80a12,12,0,0,1-17-17L159,128,87.51,56.49a12,12,0,1,1,17-17l80,80A12,12,0,0,1,184.49,136.49Z"/></svg></span></button>`;
+    }).join('');
+    $('rows').querySelectorAll('.row').forEach(b=> b.onclick=()=>openPicker(b.dataset.key));
+    renderWorkouts();
+  }
+  function renderWorkouts(){
+    const list=$('wkList'); list.classList.toggle('deleting',deleting);
+    if(!store.workouts.length){ list.innerHTML='<div class="empty">No saved workouts yet</div>'; return; }
+    list.innerHTML=store.workouts.map(w=>`
+      <div class="wk ${w.id===store.currentId?'sel':''}" data-id="${w.id}">
+        <div class="head">
+          <div class="name">${esc(w.name)}</div>
+          <button class="check" aria-label="Select"><svg viewBox="0 0 256 256" fill="currentColor"><path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"/></svg></button>
+          <button class="del" aria-label="Delete"><svg viewBox="0 0 256 256" fill="currentColor"><path d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z"/></svg></button>
+        </div>
+        <div class="grid info">
+          <span>Work</span><span>${short(w.work)}</span>
+          <span>Rest</span><span>${short(w.rest)}</span>
+          <span>Rounds</span><span>${w.rounds}</span>
+        </div>
+      </div>`).join('');
+    list.querySelectorAll('.wk').forEach(el=>{
+      const id=el.dataset.id;
+      el.querySelector('.info').onclick=()=>selectWorkout(id);
+      el.querySelector('.name').onclick=()=>selectWorkout(id);
+      el.querySelector('.check').onclick=()=>selectWorkout(id);
+      el.querySelector('.del').onclick=()=>{ if(confirm('Delete this workout?')){ store.workouts=store.workouts.filter(w=>w.id!==id); if(store.currentId===id) store.currentId=store.workouts[0]?store.workouts[0].id:null; persist(); if(current()) draft=JSON.parse(JSON.stringify(current())); renderSettings(); } };
+    });
+  }
+  function selectWorkout(id){ commitDraft(); store.currentId=id; persist(); draft=JSON.parse(JSON.stringify(current())); renderSettings(); $('scroll').scrollTo({top:0,behavior:'smooth'}); }
+  function esc(s){ return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+  $('nameInput').oninput=e=>{ draft.name=e.target.value; dirty=true; };
+  $('nameInput').onkeydown=e=>{ if(e.key==='Enter') e.target.blur(); };
+  $('gearBtn').onclick=openSettings;
+  let dirty=false;
+  function commitDraft(){
+    if(!draft) return;
+    const i=store.workouts.findIndex(w=>w.id===draft.id);
+    if(i<0 && !dirty) return; // untouched new timer: don't save
+    draft.name=(draft.name||'').trim()||'New Timer';
+    if(draft.work<1) draft.work=1; if(draft.rounds<1) draft.rounds=1;
+    if(i>=0) store.workouts[i]=draft; else store.workouts.push(draft);
+    store.currentId=draft.id; persist(); dirty=false;
+  }
+  $('cancelBtn').onclick=()=>{ $('nameInput').blur(); commitDraft(); closeSettings(); };
+  $('addBtn').onclick=()=>{
+    commitDraft();
+    draft={id:'w'+Date.now(), name:'New Timer', work:180, rest:60, rounds:10, colors:{work:'green',rest:'red'}}; dirty=false;
+    renderSettings(); $('scroll').scrollTo({top:0,behavior:'smooth'});
+    setTimeout(()=>{ $('nameInput').focus(); $('nameInput').select(); },300);
+  };
+  $('editBtn').onclick=()=>{ deleting=!deleting; $('editBtn').classList.toggle('on',deleting); $('editBtn').textContent=deleting?'Done':'Edit Timers'; renderWorkouts(); };
+
+  /* ---------- picker ---------- */
+  let pickKey=null;
+  const ITEM=110;
+  function fill(el,from,to){
+    el.innerHTML=''; el.dataset.from=from;
+    for(let i=from;i<=to;i++){ const d=document.createElement('div'); d.textContent=pad(i); d.onclick=()=>setWheel(el,i,true); el.appendChild(d); }
+    let raf=null;
+    el.addEventListener('scroll',()=>{ if(raf) return; raf=requestAnimationFrame(()=>{ raf=null; paintWheel(el); }); },{passive:true});
+    paintWheel(el);
+  }
+  function paintWheel(el){
+    const idx=Math.round(el.scrollTop/ITEM), kids=el.children;
+    for(let i=0;i<kids.length;i++){ const d=Math.abs(i-idx); kids[i].className = d===0?'sel':(d===1?'near':''); }
+  }
+  function setWheel(el,val,smooth){ const idx=val-(+el.dataset.from); el.scrollTo({top:idx*ITEM,behavior:smooth?'smooth':'auto'}); paintWheel(el); }
+  function getWheel(el){ return Math.round(el.scrollTop/ITEM)+(+el.dataset.from); }
+  fill($('selMin'),0,59); fill($('selSec'),0,59); fill($('selRounds'),1,50);
+  $('swatches').innerHTML=Object.keys(COLORS).map(k=>`<div data-c="${k}" style="background:${COLORS[k]}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></div>`).join('');
+  $('swatches').querySelectorAll('div').forEach(d=> d.onclick=()=>{ $('swatches').querySelectorAll('div').forEach(x=>x.classList.remove('on')); d.classList.add('on'); });
+  function openPicker(key){
+    pickKey=key; const f=FIELDS.find(x=>x.key===key);
+    $('pTitle').textContent=f.title;
+    const isR=f.type==='rounds';
+    $('pickTime').classList.toggle('hide',isR); $('pickRounds').classList.toggle('hide',!isR); $('swatches').classList.toggle('hide',isR);
+    $('picker').classList.add('on');
+    if(isR){ setWheel($('selRounds'),draft.rounds); }
+    else { setWheel($('selMin'),Math.floor(draft[key]/60)); setWheel($('selSec'),draft[key]%60); }
+  }
+  $('pBack').onclick=()=>{
+    const f=FIELDS.find(x=>x.key===pickKey); dirty=true;
+    if(f.type==='rounds') draft.rounds=getWheel($('selRounds'));
+    else { draft[pickKey]=getWheel($('selMin'))*60+getWheel($('selSec')); }
+    $('picker').classList.remove('on'); renderSettings();
+  };
+
+  /* ---------- init ---------- */
+  resetTimer();
+})();
+</script>
+</body>
+</html>
