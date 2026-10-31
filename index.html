@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="TSMMA Timer">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
@@ -49,7 +49,7 @@
   .namehead{padding:16px 20px}
   .namehead input{display:block;width:100%;background:transparent;border:0;color:#fff;font:inherit;font-size:46px;text-align:center;text-transform:uppercase;outline:none;padding:6px 0;border-bottom:1px dashed var(--dim)}
   .namehead input::placeholder{color:var(--dim)}
-  .scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:calc(var(--sab) + 120px)}
+  .scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:calc(var(--sab) + 16px)}
   .sechead{background:transparent;color:#fff;text-align:center;font-size:46px;line-height:1;padding:22px 20px;position:relative}
   .row{display:flex;align-items:center;width:100%;text-align:left;padding:16px 10px 16px 20px;border-bottom:1px solid var(--line);min-height:88px}
   .row .dot{display:none}
@@ -75,15 +75,15 @@
   /* ===== PICKER SHEET ===== */
   #picker{position:fixed;inset:0;background:var(--bg);display:none;flex-direction:column;z-index:10}
   #picker.on{display:flex}
-  .pick{flex:1;display:flex;align-items:center;justify-content:center;gap:16px}
-  .wheelwrap{position:relative;height:450px;width:150px}
-  .wheelwrap::before{content:"";position:absolute;left:0;right:0;top:50%;height:110px;transform:translateY(-50%);background:#202020;border-radius:999px;pointer-events:none}
+  .pick{flex:1;display:flex;align-items:center;justify-content:space-evenly;padding:0 24px}
+  .pair{display:flex;align-items:center;gap:6px}
+  .wheelwrap{position:relative;height:450px;width:140px}
   .wheel{position:absolute;inset:0;overflow-y:scroll;-webkit-mask-image:linear-gradient(transparent,#000 25%,#000 75%,transparent);mask-image:linear-gradient(transparent,#000 25%,#000 75%,transparent);scroll-snap-type:y mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:170px 0}
   .wheel::-webkit-scrollbar{display:none}
   .wheel div{height:110px;line-height:110px;text-align:center;font-size:96px;color:#fff;scroll-snap-align:center;font-variant-numeric:tabular-nums;opacity:.18;transform:scale(.72);transition:opacity .12s,transform .12s}
   .wheel div.near{opacity:.4;transform:scale(.85)}
   .wheel div.sel{opacity:1;transform:none}
-  .pick .unit{font-size:46px;color:var(--muted);margin-right:28px;align-self:center}
+  .pick .unit{font-size:46px;color:var(--muted)}
   .swatches{display:none!important}
   .swatches div{flex:1;display:flex;align-items:center;justify-content:center;color:#000}
   .swatches svg{width:40px;height:40px;display:none}
@@ -137,11 +137,11 @@
     <div class="spacer"></div>
   </div>
   <div class="pick" id="pickTime">
-    <div class="wheelwrap"><div class="wheel" id="selMin"></div></div><div class="unit">Min</div>
-    <div class="wheelwrap"><div class="wheel" id="selSec"></div></div><div class="unit">Sec</div>
+    <div class="pair"><div class="wheelwrap"><div class="wheel" id="selMin"></div></div><div class="unit">Min</div></div>
+    <div class="pair"><div class="wheelwrap"><div class="wheel" id="selSec"></div></div><div class="unit">Sec</div></div>
   </div>
   <div class="pick hide" id="pickRounds">
-    <div class="wheelwrap"><div class="wheel" id="selRounds"></div></div><div class="unit">Rounds</div>
+    <div class="pair"><div class="wheelwrap"><div class="wheel" id="selRounds"></div></div><div class="unit">Rounds</div></div>
   </div>
   <div class="swatches" id="swatches"></div>
 </div>
@@ -181,11 +181,15 @@
   let ctx=null;
   function unlockAudio(){
     if(!ctx){ try{ ctx=new (window.AudioContext||window.webkitAudioContext)(); }catch(e){} }
+    if(ctx && !ctx.master){ // master bus: compressor keeps the boosted signal from clipping
+      const comp=ctx.createDynamicsCompressor(); comp.threshold.value=-12; comp.knee.value=20; comp.ratio.value=6; comp.attack.value=.002; comp.release.value=.15;
+      const out=ctx.createGain(); out.gain.value=3.0; comp.connect(out); out.connect(ctx.destination); ctx.master=comp;
+    }
     if(ctx && ctx.state==='suspended') ctx.resume();
   }
   function tone(t, freq, dur, vol, type='sine', detune=0){
     const o=ctx.createOscillator(), g=ctx.createGain();
-    o.type=type; o.frequency.value=freq; o.detune.value=detune; o.connect(g); g.connect(ctx.destination);
+    o.type=type; o.frequency.value=freq; o.detune.value=detune; o.connect(g); g.connect(ctx.master);
     g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(vol,t+.003); g.gain.exponentialRampToValueAtTime(.0005,t+dur);
     o.start(t); o.stop(t+dur+.05);
   }
@@ -194,7 +198,7 @@
     for(let i=0;i<n;i++) d[i]=(Math.random()*2-1);
     const src=ctx.createBufferSource(), f=ctx.createBiquadFilter(), g=ctx.createGain();
     src.buffer=b; f.type='bandpass'; f.frequency.value=freq; f.Q.value=q;
-    src.connect(f); f.connect(g); g.connect(ctx.destination);
+    src.connect(f); f.connect(g); g.connect(ctx.master);
     g.gain.setValueAtTime(vol,t); g.gain.exponentialRampToValueAtTime(.0005,t+dur);
     src.start(t); src.stop(t+dur+.02);
   }
@@ -204,7 +208,7 @@
     // deeper fundamental, fast pitch drop for the "knock", bright transient click for sharpness
     const o=ctx.createOscillator(), g=ctx.createGain();
     o.type='square'; o.frequency.setValueAtTime(1150,t); o.frequency.exponentialRampToValueAtTime(820,t+.015);
-    o.connect(g); g.connect(ctx.destination);
+    o.connect(g); g.connect(ctx.master);
     g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(.55,t+.0015); g.gain.exponentialRampToValueAtTime(.0005,t+.06);
     o.start(t); o.stop(t+.1);
     tone(t,2300,.035,.3,'sine'); noise(t,.03,1,2400,3); noise(t,.01,.7,6000,.7);
