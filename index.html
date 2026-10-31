@@ -76,14 +76,15 @@
   #picker{position:fixed;inset:0;background:var(--bg);display:none;flex-direction:column;z-index:10}
   #picker.on{display:flex}
   .pick{flex:1;display:flex;align-items:center;justify-content:space-evenly;padding:0 24px}
-  .pair{display:flex;align-items:center;gap:6px}
-  .wheelwrap{position:relative;height:450px;width:140px}
-  .wheel{position:absolute;inset:0;overflow-y:scroll;-webkit-mask-image:linear-gradient(transparent,#000 25%,#000 75%,transparent);mask-image:linear-gradient(transparent,#000 25%,#000 75%,transparent);scroll-snap-type:y mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:170px 0}
+  .pair{display:flex;flex-direction:column;align-items:center}
+  .pair .unit{margin-top:-30px}
+  .wheelwrap{position:relative;height:460px;width:150px}
+  .wheel{position:absolute;inset:0;overflow-y:scroll;-webkit-mask-image:linear-gradient(to bottom,transparent 6%,rgba(0,0,0,.12) 28%,#000 42%,#000 58%,rgba(0,0,0,.12) 72%,transparent 94%);mask-image:linear-gradient(to bottom,transparent 6%,rgba(0,0,0,.12) 28%,#000 42%,#000 58%,rgba(0,0,0,.12) 72%,transparent 94%);scroll-snap-type:y mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:184px 0}
   .wheel::-webkit-scrollbar{display:none}
-  .wheel div{height:110px;line-height:110px;text-align:center;font-size:96px;color:#fff;scroll-snap-align:center;font-variant-numeric:tabular-nums;opacity:.18;transform:scale(.72);transition:opacity .12s,transform .12s}
-  .wheel div.near{opacity:.4;transform:scale(.85)}
+  .wheel div{height:92px;line-height:92px;text-align:center;font-size:96px;color:#fff;scroll-snap-align:center;font-variant-numeric:tabular-nums;opacity:.35;transform:scale(.62);transition:opacity .12s,transform .12s}
+  .wheel div.near{opacity:.6;transform:scale(.78)}
   .wheel div.sel{opacity:1;transform:none}
-  .pick .unit{font-size:46px;color:var(--muted)}
+  .pick .unit{text-align:center;font-size:36px;line-height:1;color:var(--muted)}
   .swatches{display:none!important}
   .swatches div{flex:1;display:flex;align-items:center;justify-content:center;color:#000}
   .swatches svg{width:40px;height:40px;display:none}
@@ -375,7 +376,7 @@
 
   /* ---------- picker ---------- */
   let pickKey=null;
-  const ITEM=110;
+  const ITEM=92;
   function fill(el,from,to){
     el.innerHTML=''; el.dataset.from=from;
     for(let i=from;i<=to;i++){ const d=document.createElement('div'); d.textContent=pad(i); d.onclick=()=>setWheel(el,i,true); el.appendChild(d); }
