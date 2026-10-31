@@ -219,22 +219,8 @@
   const finishBell = t => { bellStrike(t); bellStrike(t+.55); bellStrike(t+1.1,1.1); };
   const now = () => ctx ? ctx.currentTime : 0;
 
-  // Silent loop: a playing <audio> element switches the iOS audio session to media playback,
-  // which (on most iOS versions) lets Web Audio sound through the ring/silent switch.
-  let silent=null;
-  function silentLoop(on){
-    try{
-      if(!silent){
-        const SR=8000, len=SR, buf=new ArrayBuffer(44+len*2), v=new DataView(buf);
-        const str=(o,t)=>{for(let i=0;i<t.length;i++)v.setUint8(o+i,t.charCodeAt(i));};
-        str(0,'RIFF'); v.setUint32(4,36+len*2,true); str(8,'WAVE'); str(12,'fmt '); v.setUint32(16,16,true);
-        v.setUint16(20,1,true); v.setUint16(22,1,true); v.setUint32(24,SR,true); v.setUint32(28,SR*2,true);
-        v.setUint16(32,2,true); v.setUint16(34,16,true); str(36,'data'); v.setUint32(40,len*2,true);
-        silent=new Audio(URL.createObjectURL(new Blob([buf],{type:'audio/wav'}))); silent.loop=true; silent.volume=.01; silent.setAttribute('playsinline','');
-      }
-      if(on){ const p=silent.play(); if(p&&p.catch) p.catch(()=>{}); } else { silent.pause(); }
-    }catch(e){}
-  }
+  // NOTE: no background <audio> element on purpose — Web Audio alone mixes with music from other apps
+  // (an <audio> element would make iOS pause the user's music). Sounds therefore follow the ring/silent switch.
 
   /* ---------- wake lock ---------- */
   let wakeLock=null;
@@ -257,18 +243,18 @@
     return p;
   }
   function resetTimer(){
-    T.running=false; cancelAnimationFrame(T.raf); keepAwake(false); silentLoop(false);
+    T.running=false; cancelAnimationFrame(T.raf); keepAwake(false);
     T.phases=buildPhases(current()); T.idx=0; T.remaining=T.phases.length?T.phases[0].len:0; T.lastWhole=null; T.lastCue=null;
     render(true);
   }
   function start(){
     if(!T.phases.length) return;
     if(T.idx>=T.phases.length){ T.idx=0; T.remaining=T.phases[0].len; }
-    unlockAudio(); keepAwake(true); silentLoop(true);
+    unlockAudio(); keepAwake(true);
     T.running=true; T.endAt=performance.now()+T.remaining*1000; T.lastCue=Math.ceil(T.remaining-LEAD);
     loop(); render(true);
   }
-  function pause(){ T.running=false; cancelAnimationFrame(T.raf); T.remaining=Math.max(0,(T.endAt-performance.now())/1000); keepAwake(false); silentLoop(false); render(true); }
+  function pause(){ T.running=false; cancelAnimationFrame(T.raf); T.remaining=Math.max(0,(T.endAt-performance.now())/1000); keepAwake(false); render(true); }
   const LEAD=0.25; // seconds of look-ahead: sounds are scheduled on the audio clock so they land exactly on the second
   function loop(){
     if(!T.running) return;
@@ -288,7 +274,7 @@
   function nextPhase(auto){
     if(!auto){ if(T.idx+1<T.phases.length) bell(now()); else finishBell(now()); }
     T.idx++;
-    if(T.idx>=T.phases.length){ T.running=false; T.remaining=0; keepAwake(false); setTimeout(()=>silentLoop(false),2500); render(true); return; }
+    if(T.idx>=T.phases.length){ T.running=false; T.remaining=0; keepAwake(false); render(true); return; }
     T.remaining=T.phases[T.idx].len; T.lastWhole=null; T.lastCue=null;
     if(T.running){ T.endAt=performance.now()+T.remaining*1000; T.raf=requestAnimationFrame(loop); }
     render(true);
