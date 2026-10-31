@@ -1,6 +1,6 @@
 // Service worker: caches the app so it opens offline.
 // Bump CACHE whenever files change so phones pick up the new version.
-const CACHE = 'tsmma-timer-v2';
+const CACHE = 'tsmma-timer-v3';
 const FILES = ['./', './index.html', './manifest.json', './apple-touch-icon.png', './icon-192.png', './icon-512.png'];
 
 self.addEventListener('install', e => {

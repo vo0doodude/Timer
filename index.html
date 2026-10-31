@@ -88,6 +88,7 @@
   .swatches div{flex:1;display:flex;align-items:center;justify-content:center;color:#000}
   .swatches svg{width:40px;height:40px;display:none}
   .swatches div.on svg{display:block}
+  .colon{display:inline-block;transform:translateY(-.11em)}
   .hide{display:none!important}
 </style>
 </head>
@@ -175,6 +176,7 @@
   const pad = n => String(n).padStart(2,'0');
   const mmss = s => { s=Math.max(0,Math.ceil(s)); return pad(Math.floor(s/60))+':'+pad(s%60); };
   const short = s => s>=60 ? (Math.floor(s/60)+':'+pad(s%60)) : (':'+pad(s));
+  const col = t => String(t).replace(':','<span class="colon">:</span>'); // raise the colon to sit centered on the digits
   const totalLen = w => w.rounds*w.work + Math.max(0,w.rounds-1)*w.rest;
 
   /* ---------- audio: Web Audio for precise timing + silent <audio> loop to keep iOS in "playback" mode ---------- */
@@ -288,11 +290,11 @@
   }
   function render(full){
     const w=current(), ph=T.phases[T.idx], done=T.idx>=T.phases.length;
-    $('big').textContent = mmss(T.remaining);
+    $('big').innerHTML = col(mmss(T.remaining));
     if(full){
       const stage=$('stage');
       $('hName').textContent = w.name || 'Rounds';
-      if(done){ $('phaseName').textContent='Finished'; $('big').textContent='00:00'; }
+      if(done){ $('phaseName').textContent='Finished'; $('big').innerHTML=col('00:00'); }
       else { $('phaseName').textContent=ph.name; }
       $('playIco').classList.toggle('hide',T.running); $('pauseIco').classList.toggle('hide',!T.running);
     }
@@ -317,7 +319,7 @@
   function renderSettings(){
     $('nameInput').value=draft.name;
     $('rows').innerHTML=FIELDS.map(f=>{
-      const val = f.type==='rounds' ? draft.rounds : short(draft[f.key]);
+      const val = f.type==='rounds' ? draft.rounds : col(short(draft[f.key]));
       return `<button class="row" data-key="${f.key}"><span class="txt"><div class="t">${f.title}</div></span><span class="val">${val}</span><span class="chev"><svg viewBox="0 0 256 256" fill="currentColor"><path d="M184.49,136.49l-80,80a12,12,0,0,1-17-17L159,128,87.51,56.49a12,12,0,1,1,17-17l80,80A12,12,0,0,1,184.49,136.49Z"/></svg></span></button>`;
     }).join('');
     $('rows').querySelectorAll('.row').forEach(b=> b.onclick=()=>openPicker(b.dataset.key));
@@ -334,8 +336,8 @@
           <button class="del" aria-label="Delete"><svg viewBox="0 0 256 256" fill="currentColor"><path d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z"/></svg></button>
         </div>
         <div class="grid info">
-          <span>Work</span><span>${short(w.work)}</span>
-          <span>Rest</span><span>${short(w.rest)}</span>
+          <span>Work</span><span>${col(short(w.work))}</span>
+          <span>Rest</span><span>${col(short(w.rest))}</span>
           <span>Rounds</span><span>${w.rounds}</span>
         </div>
       </div>`).join('');
